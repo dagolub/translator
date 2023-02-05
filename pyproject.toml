@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "RevoPuls"
+version = "0.1.0"
+description = ""
+authors = ["Dmytro Holub"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = {extras = ["all"], version = "^0.88.0"}
+motor = "^3.1.1"
+sqlalchemy = "^1.4.45"
+python-jose = {extras = ["cryptography"], version = "^3.1.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.2"}
+emails = "^0.6"
+pytest = "^7.1.2"
+pytest-asyncio = "^0.18.3"
+pytest-mock = "^3.7.0"
+pytest-cov = "^2.8.1"
+pybadges = "^3.0.0"
+coverage-badge = "^1.1.0"
+flake8 = "^6.0.0"
+black = "^22.12.0"
+mypy = "^0.991"
+gunicorn = "^20.1.0"
+pre-commit = "^2.21.0"
+boto3 = "^1.26.41"
+bandit = "^1.7.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.bandit]
+exclude_dirs = ["tests"]

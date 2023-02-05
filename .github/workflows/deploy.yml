@@ -1,0 +1,113 @@
+name: Deploy
+
+on: push
+
+jobs:
+  flake8:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.9" ]
+    name: Flake8
+    steps:
+      - uses: actions/checkout@v3
+      - name: Checkout PyTorch
+        uses: actions/checkout@master
+      - name: Install flake8
+        run: pip install flake8
+      - name: Run flake8
+        uses: py-actions/flake8@v2
+  black:
+    name: Black
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.9" ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: psf/black@stable
+        with:
+          options: ". --check"
+  bandit:
+    name: Bandit
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.9" ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run bandit
+        uses: jpetrucciani/bandit-check@master
+        with:
+          bandit_flags: '-lll -c bandit.yaml'
+  mypy:
+    runs-on: ubuntu-latest
+    needs: [black, bandit, flake8]
+    strategy:
+      matrix:
+        python-version: [ "3.10" ]
+    name: MyPy
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Dependencies and run MyPy
+        run: |
+          python -m venv venv
+          source ./venv/bin/activate
+          pip install poetry
+          pip install --upgrade pip
+          poetry install
+          ./venv/bin/mypy ./
+  pytest:
+    name: PyTest
+    runs-on: ubuntu-latest
+    needs: [black, bandit, flake8]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          python3 -m venv venv
+          source ./venv/bin/activate
+          pip install --upgrade pip
+          pip install poetry
+          poetry install
+      - name: Build coverage percentage
+        run: |
+          echo COVERAGE=$(export $(cat .env|xargs);./venv/bin/pytest --cache-clear --cov --cov-report term | grep "TOTAL" | awk '{print $4}') >> $GITHUB_ENV
+      - name: Create coverage Badge
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.GISTS }}
+          # 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
+          gistID: 25d4bd2f53ddf0792bb916d62ac0205a
+          filename: translator.json
+          label: PyTest
+          message: ${{ env.COVERAGE }}
+          color: success
+  deploy:
+    name: "Deploy"
+    needs: [mypy, pytest]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: list
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: cd revopuls-api;git pull;source ./venv/bin/activate;poetry install
+          host: mongo.one
+          username: ubuntu
+          privateKey: ${{ secrets.PRIVATE_KEY}}
+        env:
+          CI: true
+      - name: restart service
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: systemctl restart revopuls
+          host: mongo.one
+          username: root
+          privateKey: ${{ secrets.PRIVATE_KEY}}
+        env:
+          CI: true
