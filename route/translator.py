@@ -7,7 +7,6 @@ import models
 import schemas
 from core import deps
 
-
 router = APIRouter()
 
 
