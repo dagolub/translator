@@ -1,6 +1,6 @@
 import uvicorn  # type: ignore
 from fastapi import FastAPI
-from route import users, login
+from route import users, login, translator
 from config.config import settings
 from starlette.middleware.cors import CORSMiddleware
 
@@ -20,6 +20,9 @@ app.add_middleware(
 
 app.include_router(login.router, prefix=f"{settings.API_V1_STR}", tags=["login"])
 app.include_router(users.router, prefix=f"{settings.API_V1_STR}/users", tags=["users"])
+app.include_router(
+    translator.router, prefix=f"{settings.API_V1_STR}/translator", tags=["translator"]
+)
 
 
 if __name__ == "__main__":
