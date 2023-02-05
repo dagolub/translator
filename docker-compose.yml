@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  api:
+    build:
+      context: ./
+      dockerfile: backend.dockerfile
+    env_file:
+      - .env.local
+    ports:
+      - "8080:8080"
+volumes:
+  app:
+

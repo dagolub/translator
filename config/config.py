@@ -4,8 +4,8 @@ from pydantic import AnyHttpUrl, BaseSettings
 
 class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
-    SECRET_KEY: str = "RevoPuls"
-    PROJECT_NAME: str = "RevoPuls"
+    SECRET_KEY: str = "Translator"
+    PROJECT_NAME: str = "Translator"
     SERVER_NAME: str
     SERVER_HOST: AnyHttpUrl
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
