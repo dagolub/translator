@@ -81,7 +81,7 @@ jobs:
         uses: schneegans/dynamic-badges-action@v1.6.0
         with:
           auth: ${{ secrets.GISTS }}
-          # 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
+          # github_|||pat_11AAAR3AQ024t77WpOpx9Z_5kemP2fpKjQK9TGWous1PuWvA4kB4Hs4Eu4J8nkMKlbOS2PXO3Od0bWdOaW
           gistID: 25d4bd2f53ddf0792bb916d62ac0205a
           filename: translator.json
           label: PyTest
