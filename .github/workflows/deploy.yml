@@ -96,7 +96,7 @@ jobs:
       - name: list
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: cd translator;git pull;source ./venv/bin/activate;./venv/bin/poetry install
+          command: cd translator;git pull;source ./venv/bin/activate;poetry install
           host: mongo.one
           username: ubuntu
           privateKey: ${{ secrets.PRIVATE_KEY}}
