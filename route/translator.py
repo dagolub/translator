@@ -17,7 +17,6 @@ async def create_translator(
     current_user: models.User = Depends(deps.get_current_active_user),  # noqa
     translator_in: schemas.TranslatorCreate,
 ) -> Any:
-
     translator = await crud.translator.create(
         db, obj_in=jsonable_encoder(translator_in)
     )  # noqa
@@ -31,7 +30,4 @@ async def read_translator_by_id(
     current_user: models.User = Depends(deps.get_current_active_user),  # type: ignore
     db: Session = Depends(deps.get_db),
 ) -> Any:
-    """
-    Get a specific user by id.
-    """
     return await crud.translator.get(db, object_id=translator_id)  # type: ignore
