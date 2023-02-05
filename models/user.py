@@ -4,7 +4,7 @@ from db.base_class import Base
 
 
 class User(Base):
-    __tablename__: str = "users"  # type: ignore
+    __tablename__: str = "translator_users"  # type: ignore
     _id = Column(String, primary_key=True, index=True)
     full_name = Column(String, index=True)
     email = Column(String, unique=True, index=True, nullable=False)

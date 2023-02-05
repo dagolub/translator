@@ -1,4 +1,4 @@
-# RevoPuls
+# Translator
 
 [![Deploy](https://github.com/dagolub/translator/actions/workflows/deploy.yml/badge.svg)](https://github.com/dagolub/translator/actions/workflows/deploy.yml)
 

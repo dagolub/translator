@@ -102,12 +102,12 @@ jobs:
           privateKey: ${{ secrets.PRIVATE_KEY}}
         env:
           CI: true
-      - name: restart service
-        uses: garygrossgarten/github-action-ssh@release
-        with:
-          command: systemctl restart translator
-          host: mongo.one
-          username: root
-          privateKey: ${{ secrets.PRIVATE_KEY}}
-        env:
-          CI: true
+#      - name: restart service
+#        uses: garygrossgarten/github-action-ssh@release
+#        with:
+#          command: systemctl restart translator
+#          host: mongo.one
+#          username: root
+#          privateKey: ${{ secrets.PRIVATE_KEY}}
+#        env:
+#          CI: true
