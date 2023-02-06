@@ -1,10 +1,12 @@
 from typing import Any
+
 import pytest  # type: ignore
 from fastapi.testclient import TestClient  # type: ignore
 from sqlalchemy.orm import Session  # type: ignore
+
 import crud
-from core.deps import get_db
 from config.config import settings
+from core.deps import get_db
 from main import app
 from tests.utils.db import fake_db
 from tests.utils.user import create_user

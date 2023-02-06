@@ -1,7 +1,9 @@
 from typing import Any
-from fastapi import APIRouter, Depends, BackgroundTasks
+
+from fastapi import APIRouter, BackgroundTasks, Depends
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session  # type: ignore
+
 import crud
 import models
 import schemas

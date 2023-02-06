@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session  # type: ignore
 
 import crud
 import models
-from core import security
 from config.config import settings
+from core import security
 from db.session import database
 
 reusable_oauth2 = OAuth2PasswordBearer(

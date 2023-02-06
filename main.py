@@ -1,8 +1,9 @@
 import uvicorn  # type: ignore
 from fastapi import FastAPI
-from route import users, login, translator
-from config.config import settings
 from starlette.middleware.cors import CORSMiddleware
+
+from config.config import settings
+from route import login, translator, users
 
 app = FastAPI(
     title=settings.PROJECT_NAME, openapi_url=f"{settings.API_V1_STR}/openapi.json"

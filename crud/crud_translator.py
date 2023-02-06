@@ -1,4 +1,5 @@
 from typing import TypeVar  # type: ignore
+
 from crud.base import CRUDBase
 from db.base_class import Base
 from models.translator import Translator

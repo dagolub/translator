@@ -27,6 +27,7 @@ pre-commit = "^2.21.0"
 boto3 = "^1.26.41"
 bandit = "^1.7.4"
 selenium = "^4.8.0"
+isort = "^5.12.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -34,3 +35,6 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.bandit]
 exclude_dirs = ["tests"]
+
+[tool.isort]
+profile = "black"

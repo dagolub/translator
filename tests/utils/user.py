@@ -1,7 +1,9 @@
 import random
-from typing import Any, Dict, Union, Optional
+from typing import Any, Dict, Optional, Union
+
 from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session  # type: ignore
+
 import crud
 from config.config import settings
 from models.user import User

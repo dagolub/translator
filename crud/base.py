@@ -1,9 +1,10 @@
-from typing import Generic, Type, TypeVar, Optional, List, Union, Dict, Any
-from sqlalchemy.orm import Session  # type: ignore
-from pydantic import BaseModel
-from bson.objectid import ObjectId
-from db.base_class import Base
+from typing import Any, Dict, Generic, List, Optional, Type, TypeVar, Union
 
+from bson.objectid import ObjectId
+from pydantic import BaseModel
+from sqlalchemy.orm import Session  # type: ignore
+
+from db.base_class import Base
 
 ModelType = TypeVar("ModelType", bound=Base)
 CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)

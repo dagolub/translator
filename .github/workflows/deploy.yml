@@ -3,6 +3,16 @@ name: Deploy
 on: push
 
 jobs:
+  isort:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - uses: isort/isort-action@master
+        with:
+          requirementsFiles: "pip install poetry;poetry install"
   flake8:
     runs-on: ubuntu-latest
     strategy:

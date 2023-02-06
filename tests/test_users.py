@@ -1,12 +1,14 @@
 from typing import Dict
+
 import pytest  # type: ignore
 from fastapi.testclient import TestClient
 from jose import jwt  # type: ignore
 from sqlalchemy.orm import Session  # type: ignore
+
 import crud
-from core.deps import get_db
-from core import security
 from config.config import settings
+from core import security
+from core.deps import get_db
 from main import app
 from schemas.user import UserCreate
 from tests.utils.db import fake_db

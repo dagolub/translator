@@ -1,6 +1,8 @@
 from typing import Optional
+
 from bson.objectid import ObjectId  # type: ignore
 from sqlalchemy.orm import Session  # type: ignore
+
 from core.security import get_password_hash
 
 

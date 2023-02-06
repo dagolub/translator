@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session  # type: ignore
+
 import crud
 from config.config import settings
 from core.security import get_password_hash

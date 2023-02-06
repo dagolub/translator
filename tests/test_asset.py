@@ -1,13 +1,13 @@
 from typing import Dict
+
 import pytest  # type: ignore
 from fastapi.testclient import TestClient
-from core.deps import get_db
+
 from config.config import settings
+from core.deps import get_db
 from main import app
 from tests.utils.asset import create_asset
-
 from tests.utils.db import fake_db
-
 
 app.dependency_overrides[get_db] = fake_db
 

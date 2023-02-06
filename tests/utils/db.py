@@ -1,8 +1,10 @@
 from typing import Any, Optional
 from unittest.mock import MagicMock
+
 from bson.objectid import ObjectId  # type: ignore
-from sqlalchemy.orm import Session  # type: ignore
 from fastapi.encoders import jsonable_encoder
+from sqlalchemy.orm import Session  # type: ignore
+
 from config.config import settings
 
 first_user_id = ObjectId()

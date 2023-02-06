@@ -7,9 +7,8 @@ from sqlalchemy.orm import Session  # type: ignore
 
 import crud
 import schemas
-from core import deps
-from core import security
 from config.config import settings
+from core import deps, security
 from core.security import get_password_hash
 from core.utils import (
     generate_password_reset_token,

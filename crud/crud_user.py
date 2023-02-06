@@ -1,6 +1,8 @@
 from typing import Any, Dict, Optional, TypeVar, Union  # type: ignore
+
 from motor.motor_asyncio import AsyncIOMotorClient  # type: ignore
 from sqlalchemy.orm import Session  # type: ignore
+
 from core.security import get_password_hash, verify_password
 from crud.base import CRUDBase
 from db.base_class import Base

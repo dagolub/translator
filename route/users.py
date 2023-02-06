@@ -8,8 +8,8 @@ from sqlalchemy.orm import Session  # type: ignore
 import crud
 import models
 import schemas
-from core import deps
 from config.config import settings
+from core import deps
 from core.security import get_password_hash
 from core.utils import send_new_account_email
 
