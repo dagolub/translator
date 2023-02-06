@@ -23,7 +23,7 @@ async def create_translator(
 ) -> Any:
     translator_in.status = TranslateStatus.PENDING
     translator = await crud.translator.create(
-        db, obj_in=jsonable_encoder(translator_in)
+        db, obj_in=jsonable_encoder(translator_in)  # type: ignore
     )  # noqa
     background_tasks.add_task(translate, translator, db)
     return translator
