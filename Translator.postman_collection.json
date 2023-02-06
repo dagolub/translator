@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "b888051c-27ea-4afd-87e3-a51c28885cdd",
+		"name": "Translator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3845600"
+	},
+	"item": [
+		{
+			"name": "GET Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{user}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{pass}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/login/access-token",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"login",
+						"access-token"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET Token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{pass}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/login/access-token",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"login",
+								"access-token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Jan 2023 19:20:01 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzM1NTEyMDEsInN1YiI6IjYzYWVlMzNlZDNlOWYwMGUxZGE1OTQ2NCJ9.i5r0iYM28nI7dkJZzEUweTWnVSe26EA22u47vIEFxk4Eu6SUr_vEaRXeBQ73HuoFLPTR-kiiG4zyBim81vHP2A\",\n    \"token_type\": \"bearer\"\n}"
+				},
+				{
+					"name": "GET Token error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{pass}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/login/access-token",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"login",
+								"access-token"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 04 Jan 2023 21:29:57 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "40"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"detail\": \"Incorrect email or password\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create translator",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"text\": \"question\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_local}}/translator/",
+					"host": [
+						"{{host_local}}"
+					],
+					"path": [
+						"translator",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get translator",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"text\": \"question\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host_local}}/translator/63e01e4824172a60950681d6",
+					"host": [
+						"{{host_local}}"
+					],
+					"path": [
+						"translator",
+						"63e01e4824172a60950681d6"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "pass",
+			"value": "admin"
+		},
+		{
+			"key": "host",
+			"value": " https://revopuls-api.fastapi.xyz/api/v1"
+		}
+	]
+}
