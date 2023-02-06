@@ -41,6 +41,6 @@ In repo, you can find postman collection to test requests.
 
 Basically if you see in GitHub actions you can find deploy to my own server.
 
-My server available at translator.fastapi.xyz
+My server available at https://translator.fastapi.xyz
 
 Login and password to get api key is admin@admin.com and password: admin
