@@ -72,7 +72,7 @@ jobs:
   pytest:
     name: PyTest
     runs-on: ubuntu-latest
-    needs: [black, bandit, flake8]
+    needs: [black, bandit, flake8, isort]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
