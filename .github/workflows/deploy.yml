@@ -7,12 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
-      - uses: isort/isort-action@master
-        with:
-          requirementsFiles: "pip install poetry;poetry install"
+      - name: Install Dependencies and run Isort
+        run: |
+          python -m venv venv
+          source ./venv/bin/activate
+          pip install poetry
+          pip install --upgrade pip
+          poetry install
+          ./venv/bin/isort ./
   flake8:
     runs-on: ubuntu-latest
     strategy:
@@ -52,7 +54,7 @@ jobs:
           bandit_flags: '-lll -c bandit.yaml'
   mypy:
     runs-on: ubuntu-latest
-    needs: [black, bandit, flake8]
+    needs: [black, bandit, flake8, isort]
     strategy:
       matrix:
         python-version: [ "3.10" ]
