@@ -26,6 +26,7 @@ gunicorn = "^20.1.0"
 pre-commit = "^2.21.0"
 boto3 = "^1.26.41"
 bandit = "^1.7.4"
+selenium = "^4.8.0"
 
 [build-system]
 requires = ["poetry-core"]

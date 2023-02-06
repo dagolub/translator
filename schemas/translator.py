@@ -1,9 +1,17 @@
 from typing import Optional
 from pydantic import BaseModel
+from enum import Enum
+
+
+class TranslateStatus(str, Enum):
+    FINISHED = "finished"
+    PENDING = "pending"
 
 
 class TranslatorBase(BaseModel):
     text: Optional[str] = None
+    text_translated: Optional[str] = None
+    status: Optional[TranslateStatus]
 
 
 class TranslatorCreate(TranslatorBase):

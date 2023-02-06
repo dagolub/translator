@@ -6,4 +6,5 @@ from .translator import (  # noqa
     TranslatorCreate,  # noqa
     TranslatorInDB,  # noqa
     TranslatorUpdate,  # noqa
+    TranslateStatus,  # noqa
 )  # noqa

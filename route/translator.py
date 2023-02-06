@@ -1,26 +1,29 @@
 from typing import Any
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, BackgroundTasks
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session  # type: ignore
 import crud
 import models
 import schemas
 from core import deps
+from schemas.translator import TranslateStatus
+from tasks.google import translate
 
 router = APIRouter()
 
 
 @router.post("/", response_model=schemas.Translator)
 async def create_translator(
-    *,
+    translator_in: schemas.TranslatorCreate,
+    background_tasks: BackgroundTasks,
     db: Session = Depends(deps.get_db),
     current_user: models.User = Depends(deps.get_current_active_user),  # noqa
-    translator_in: schemas.TranslatorCreate,
 ) -> Any:
+    translator_in.status = TranslateStatus.PENDING
     translator = await crud.translator.create(
         db, obj_in=jsonable_encoder(translator_in)
     )  # noqa
-
+    background_tasks.add_task(translate, translator, db)
     return translator
 
 
